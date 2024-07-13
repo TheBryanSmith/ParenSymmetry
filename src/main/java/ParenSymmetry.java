@@ -1,19 +1,47 @@
+import jdk.jshell.spi.ExecutionControl;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class ParenSymmetry {
 
 
-    private Boolean isBalanced(String s) {
+    Boolean isBalanced(String s) {
         // implement this method
-        return null;
+
+
+
+
+        int scale = 0;//counter  // could be zero; could be less than zero
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {//use a counter set unclosed parenthesis to decrement
+                scale--; //makes less than zero
+            } else if (s.charAt(i) == ')') { //set closed parenthesis to increment
+                scale++; // if ha a matching closing parenthesis than balances back to zero
+            }
+        }
+        return scale == 0; // if balanced it returns scale "is equal to" zero which in turn should return true
     }
 
-    private void checkFile(String filename) {
+    public void checkFile(String filename) {
         // open file named filename
-
+        try {
+            File myObj = new File("/Users/bryan/Desktop/zipcode Classwork/Unfinished/ParenSymmetry/TestStrings0.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         // for each line in the file
-            // read the line
-            // print whether or not the line's parenthesis are balanced
-
+        // read the line
+        // print whether or not the line's parenthesis are balanced
         // CLOSE the file
     }
 
